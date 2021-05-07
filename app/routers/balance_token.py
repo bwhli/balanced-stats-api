@@ -8,6 +8,7 @@ balance_token = BalanceToken()
 
 # Set total supply and staked supply.
 baln_total_supply = balance_token.get_baln_total_supply()
+baln_circulating_supply = balance_token.get_baln_circulating_supply()
 baln_staked_supply = balance_token.get_baln_staked_supply()
 
 
@@ -15,6 +16,7 @@ baln_staked_supply = balance_token.get_baln_staked_supply()
 async def get_balance_token_supply():
     return {
         "baln_total_supply": baln_total_supply,
+        "baln_circulating_supply": baln_circulating_supply,
         "baln_staked_supply": baln_staked_supply,
     }
 
@@ -35,3 +37,11 @@ async def get_balance_token_price():
     Get Balance Token price in USD and ICX
     """
     return balance_token.get_baln_price()
+
+
+@router.get("/market-cap/")
+async def get_baln_market_cap():
+    """
+    Returns the market cap of Balance Token in USD.
+    """
+    return balance_token.get_baln_market_cap()
