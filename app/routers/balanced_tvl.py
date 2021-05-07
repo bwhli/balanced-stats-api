@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 router = APIRouter(prefix="/tvl")
 
-# Initialize BalancedLoans class.
+# Initialize BalancedDex and BalancedLoans classes.
 balanced_dex = BalancedDex()
 balanced_loans = BalancedLoans()
 
