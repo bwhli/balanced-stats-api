@@ -1,2 +1,2 @@
-# balanced-stats-api
+# balanced-stats
  
