@@ -22,4 +22,4 @@ starlette==0.13.6
 toolz==0.11.1
 typing-extensions==3.10.0.0
 urllib3==1.26.4
-uvicorn0.13.4
+uvicorn==0.13.4
