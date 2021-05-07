@@ -19,7 +19,7 @@ async def get_tvl():
     Returns platform TVL in USD.
     """
     return {
-        "tvl": loans_tvl["loans_tvl_usd"] + dex_tvl["dex_total_tvl_usd"]
+        "tvl_usd": loans_tvl["loans_tvl_usd"] + dex_tvl["dex_total_tvl_usd"]
     }
 
 
