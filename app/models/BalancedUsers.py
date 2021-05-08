@@ -19,9 +19,4 @@ class BalancedUsers:
         sicx_bnusd_providers = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "totalDexAddresses", {"_id": 2}), 0)  # noqa 503
         baln_bnusd_providers = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "totalDexAddresses", {"_id": 3}), 0)  # noqa 503
         total_providers = sicx_icx_providers + sicx_bnusd_providers + baln_bnusd_providers  # noqa 503
-        return {
-            "sicx_icx_providers": sicx_icx_providers,
-            "sicx_bnusd_providers": sicx_bnusd_providers,
-            "baln_bnusd_providers": baln_bnusd_providers,
-            "total_providers": total_providers
-        }
+        return sicx_icx_providers, sicx_bnusd_providers, baln_bnusd_providers, total_providers  # noqa 503

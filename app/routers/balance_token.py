@@ -13,27 +13,27 @@ baln_circulating_supply = balance_token.get_baln_circulating_supply()
 baln_staked_supply = balance_token.get_baln_staked_supply()
 
 
-class MarketCapModel(BaseModel):
+class BalnMarketCap(BaseModel):
     baln_market_cap: str
 
 
-class PriceModel(BaseModel):
+class BalnPrice(BaseModel):
     baln_price_icx: str
     baln_price_usd: str
 
 
-class StakeModel(BaseModel):
+class BalnStake(BaseModel):
     baln_percent_staked_of_circulating: str
     baln_percent_staked_of_total: str
 
 
-class SupplyModel(BaseModel):
+class BalnSupply(BaseModel):
     baln_circulating_supply: str
     baln_staked_supply: str
     baln_total_supply: str
 
 
-@router.get("/market-cap/")
+@router.get("/market-cap/", response_model=BalnMarketCap)
 async def get_baln_market_cap():
     """
     Returns the market cap of Balance Token in USD.
@@ -42,7 +42,7 @@ async def get_baln_market_cap():
     return {"baln_market_cap": baln_market_cap}
 
 
-@router.get("/price/", response_model=PriceModel)
+@router.get("/price/", response_model=BalnPrice)
 async def get_balance_token_price():
     """
     Get Balance Token price in USD and ICX
@@ -56,7 +56,7 @@ async def get_balance_token_price():
     }
 
 
-@router.get("/stake/", response_model=StakeModel)
+@router.get("/stake/", response_model=BalnStake)
 async def get_balance_token_stake():
     baln_percent_staked_of_total = baln_staked_supply / baln_total_supply
     baln_percent_staked_of_circulating = baln_staked_supply / (baln_total_supply * 0.9)  # noqa 503
@@ -66,7 +66,7 @@ async def get_balance_token_stake():
     }
 
 
-@router.get("/supply/", response_model=SupplyModel)
+@router.get("/supply/", response_model=BalnSupply)
 async def get_balance_token_supply():
     return {
         "baln_circulating_supply": baln_circulating_supply,

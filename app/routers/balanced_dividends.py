@@ -7,15 +7,15 @@ router = APIRouter(prefix="/dividends")
 balanced_dividends = BalancedDividends()
 
 
-class FeesModel(BaseModel):
-    bnusd_fees: str
+class Fees(BaseModel):
     baln_fees: str
+    bnusd_fees: str
     icx_fees: str
     sicx_fees: str
     total_fees_usd: str
 
 
-@router.get("/fees/", response_model=FeesModel)
+@router.get("/fees/", response_model=Fees)
 async def get_fees():
     fees = balanced_dividends.get_fees()
     bnusd_fees = fees["bnusd_fees"]

@@ -14,17 +14,17 @@ class BalancedDex:
         sicx_bnusd_stats = self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolStats", {"_id": 2})  # noqa 503
         baln_bnusd_stats = self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolStats", {"_id": 3})  # noqa 503
         for pool in [sicx_icx_stats, sicx_bnusd_stats, baln_bnusd_stats]:
-            pool["base"] = hex_to_int(pool["base"], 18)
-            pool["quote"] = hex_to_int(pool["quote"], 18)
-            pool["price"] = hex_to_int(pool["price"], 18)
-            pool["total_supply"] = hex_to_int(pool["total_supply"], 18)
-            pool["base_decimals"] = hex_to_int(pool["base_decimals"], 0)
-            pool["quote_decimals"] = hex_to_int(pool["quote_decimals"], 0)
-            pool["min_quote"] = hex_to_int(pool["min_quote"], 18)
+            pool["base"] = str(hex_to_int(pool["base"], 18))
+            pool["quote"] = str(hex_to_int(pool["quote"], 18))
+            pool["price"] = str(hex_to_int(pool["price"], 18))
+            pool["total_supply"] = str(hex_to_int(pool["total_supply"], 18))
+            pool["base_decimals"] = str(hex_to_int(pool["base_decimals"], 0))
+            pool["quote_decimals"] = str(hex_to_int(pool["quote_decimals"], 0))
+            pool["min_quote"] = str(hex_to_int(pool["min_quote"], 18))
         return {
-            "sicx_icx": sicx_icx_stats,
-            "sicx_bnusd": sicx_bnusd_stats,
-            "baln_bnusd": baln_bnusd_stats
+            "sicx_icx_pool": sicx_icx_stats,
+            "sicx_bnusd_pool": sicx_bnusd_stats,
+            "baln_bnusd_pool": baln_bnusd_stats
         }
 
     def get_dex_tvl(self):
@@ -34,8 +34,8 @@ class BalancedDex:
         sicx_icx_tvl_usd = sicx_icx_tvl * self._icx_price
         dex_total_tvl_usd = sicx_bnusd_tvl + baln_bnusd_tvl + sicx_icx_tvl_usd
         return {
-            "sicx_icx_tvl": sicx_icx_tvl,
-            "sicx_bnusd_tvl": sicx_bnusd_tvl,
-            "baln_bnusd_tvl": baln_bnusd_tvl,
-            "dex_total_tvl_usd": dex_total_tvl_usd
+            "sicx_icx_tvl": round(sicx_icx_tvl, 8),
+            "sicx_bnusd_tvl": round(sicx_bnusd_tvl, 2),
+            "baln_bnusd_tvl": round(baln_bnusd_tvl, 2),
+            "dex_total_tvl_usd": round(dex_total_tvl_usd, 2)
         }

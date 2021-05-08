@@ -8,11 +8,11 @@ router = APIRouter(prefix="/bnusd")
 balanced_dollars = BalancedDollars()
 
 
-class SupplyModel(BaseModel):
+class BnusdSupply(BaseModel):
     bnusd_total_supply: str
 
 
-@router.get("/supply/", response_model=SupplyModel)
+@router.get("/supply/", response_model=BnusdSupply)
 async def get_balanced_dollars_supply():
     bnusd_total_supply = balanced_dollars.get_bnusd_total_supply()
     return {
