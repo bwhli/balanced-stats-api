@@ -23,7 +23,7 @@ async def get_pool_stats():
     sicx_bnusd_pool = pool_stats["sicx_bnusd_pool"]
     baln_bnusd_pool = pool_stats["baln_bnusd_pool"]
     return {
-        "sicx_icx_pool": sicx_icx_pool
+        "sicx_icx_pool": sicx_icx_pool,
         "sicx_bnusd_pool": sicx_bnusd_pool,
-        "baln_bnusd_pool": baln_bnusd_pool,
+        "baln_bnusd_pool": baln_bnusd_pool
     }
