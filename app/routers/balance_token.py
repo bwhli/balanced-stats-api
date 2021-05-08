@@ -41,7 +41,7 @@ class BalnSupply(BaseModel):
 @router.get("/holders/", response_model=BalnHolders)
 async def get_baln_holders():
     r = requests.get(
-        "https://tracker.icon.foundation/v3/token/summary?contractAddr=cxf61cd5a45dc9f91c15aa65831a30a90d59a09619").json()
+        "https://tracker.icon.foundation/v3/token/summary?contractAddr=cxf61cd5a45dc9f91c15aa65831a30a90d59a09619").json()  # noqa 503
     baln_holders = r["data"]["holders"]
     return {"baln_holders": baln_holders}
 

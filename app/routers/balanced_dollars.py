@@ -20,7 +20,7 @@ class BnusdSupply(BaseModel):
 @router.get("/holders/", response_model=BnusdHolders)
 async def get_bnusd_holders():
     r = requests.get(
-        "https://tracker.icon.foundation/v3/token/summary?contractAddr=cx88fd7df7ddff82f7cc735c871dc519838cb235bb").json()
+        "https://tracker.icon.foundation/v3/token/summary?contractAddr=cx88fd7df7ddff82f7cc735c871dc519838cb235bb").json()  # noqa 503
     bnusd_holders = r["data"]["holders"]
     return {"bnusd_holders": bnusd_holders}
 

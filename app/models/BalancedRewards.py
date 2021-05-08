@@ -13,7 +13,7 @@ class BalancedRewards:
         sicx_bnusd_apy = hex_to_int(self._icx.call(self._BALANCED_REWARDS_CONTRACT_ADDRESS, "getAPY", {"_name": "sICX/bnUSD"}), 18)  # noqa 503
         baln_bnusd_apy = hex_to_int(self._icx.call(self._BALANCED_REWARDS_CONTRACT_ADDRESS, "getAPY", {"_name": "BALN/bnUSD"}), 18)  # noqa 503
         return {
-            "sicx_icx_apy": sicx_icx_apy,
-            "sicx_bnusd_apy": sicx_bnusd_apy,
-            "baln_bnusd_apy": baln_bnusd_apy
+            "sicx_icx_apy": round(sicx_icx_apy * 100, 2),
+            "sicx_bnusd_apy": round(sicx_bnusd_apy * 100, 2),
+            "baln_bnusd_apy": round(baln_bnusd_apy * 100, 2)
         }
