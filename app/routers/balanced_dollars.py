@@ -1,3 +1,4 @@
+import requests
 from ..models.BalancedDollars import BalancedDollars
 from fastapi import APIRouter
 from pydantic import BaseModel
@@ -8,8 +9,20 @@ router = APIRouter(prefix="/bnusd")
 balanced_dollars = BalancedDollars()
 
 
+class BnusdHolders(BaseModel):
+    bnusd_holders: str
+
+
 class BnusdSupply(BaseModel):
     bnusd_total_supply: str
+
+
+@router.get("/holders/", response_model=BnusdHolders)
+async def get_bnusd_holders():
+    r = requests.get(
+        "https://tracker.icon.foundation/v3/token/summary?contractAddr=cx88fd7df7ddff82f7cc735c871dc519838cb235bb").json()
+    bnusd_holders = r["data"]["holders"]
+    return {"bnusd_holders": bnusd_holders}
 
 
 @router.get("/supply/", response_model=BnusdSupply)

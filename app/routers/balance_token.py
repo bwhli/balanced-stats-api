@@ -1,3 +1,4 @@
+import requests
 from ..models.BalanceToken import BalanceToken
 from fastapi import APIRouter
 from pydantic import BaseModel
@@ -11,6 +12,10 @@ balance_token = BalanceToken()
 baln_total_supply = balance_token.get_baln_total_supply()
 baln_circulating_supply = balance_token.get_baln_circulating_supply()
 baln_staked_supply = balance_token.get_baln_staked_supply()
+
+
+class BalnHolders(BaseModel):
+    baln_holders: str
 
 
 class BalnMarketCap(BaseModel):
@@ -31,6 +36,14 @@ class BalnSupply(BaseModel):
     baln_circulating_supply: str
     baln_staked_supply: str
     baln_total_supply: str
+
+
+@router.get("/holders/", response_model=BalnHolders)
+async def get_baln_holders():
+    r = requests.get(
+        "https://tracker.icon.foundation/v3/token/summary?contractAddr=cxf61cd5a45dc9f91c15aa65831a30a90d59a09619").json()
+    baln_holders = r["data"]["holders"]
+    return {"baln_holders": baln_holders}
 
 
 @router.get("/market-cap/", response_model=BalnMarketCap)
