@@ -22,11 +22,6 @@ class BalnMarketCap(BaseModel):
     baln_market_cap: str
 
 
-class BalnPrice(BaseModel):
-    baln_price_icx: str
-    baln_price_usd: str
-
-
 class BalnStake(BaseModel):
     baln_percent_staked_of_circulating: str
     baln_percent_staked_of_total: str
@@ -53,20 +48,6 @@ async def get_baln_market_cap():
     """
     baln_market_cap = balance_token.get_baln_market_cap()
     return {"baln_market_cap": baln_market_cap}
-
-
-@router.get("/price/", response_model=BalnPrice)
-async def get_balance_token_price():
-    """
-    Get Balance Token price in USD and ICX
-    """
-    baln_price = balance_token.get_baln_price()
-    baln_price_icx = baln_price["baln_price_icx"]
-    baln_price_usd = baln_price["baln_price_usd"]
-    return {
-        "baln_price_icx": baln_price_icx,
-        "baln_price_usd": baln_price_usd
-    }
 
 
 @router.get("/stake/", response_model=BalnStake)
