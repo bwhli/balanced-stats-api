@@ -33,7 +33,7 @@ class BalnSupply(BaseModel):
     baln_total_supply: str
 
 
-@router.get("/cap/", response_model=BalnMarketCap)
+@router.get("/market-cap/", response_model=BalnMarketCap)
 async def get_baln_market_cap():
     """
     Returns the market cap of Balance Token in USD.
