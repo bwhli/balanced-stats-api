@@ -14,7 +14,7 @@ class MarketQuote(BaseModel):
     baln_bnusd_quote: str
 
 
-@router.get("/quote/")
+@router.get("/quote/", response_model=MarketQuote)
 async def get_market_quotes():
     market_quotes = balanced_dex.get_market_quotes()
     sicx_icx_quote = market_quotes[0]
