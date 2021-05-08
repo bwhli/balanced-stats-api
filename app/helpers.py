@@ -7,4 +7,4 @@ def hex_to_int(hex, dec):
     if num - int(num) == 0:  # If num is a whole number.
         return int(num)
     else:
-        return num
+        return round(num, 8)

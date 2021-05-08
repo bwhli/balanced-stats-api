@@ -18,8 +18,8 @@ class BalancedDividends:
         bnusd_fees = hex_to_int(fees["bnUSD"], 18)
         baln_fees = hex_to_int(fees["BALN"], 18)
         icx_fees = hex_to_int(fees["ICX"], 18)
-        total_fees_usd = sicx_fees * self._icx_usd_price + baln_fees * \
-            self._baln_usd_price + icx_fees * self._icx_usd_price + bnusd_fees
+        total_fees_usd = round(sicx_fees * self._icx_usd_price + baln_fees *
+                               self._baln_usd_price + icx_fees * self._icx_usd_price + bnusd_fees, 8)  # noqa 503
         return {
             "sicx_fees": sicx_fees,
             "bnusd_fees": bnusd_fees,

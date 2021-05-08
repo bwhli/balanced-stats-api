@@ -1,3 +1,5 @@
+from fastapi import HTTPException
+from iconsdk.exception import JSONRPCException
 from iconsdk.builder.call_builder import CallBuilder
 from iconsdk.icon_service import IconService
 from iconsdk.providers.http_provider import HTTPProvider
@@ -10,15 +12,15 @@ class Icx:
             HTTPProvider("https://ctz.solidwallet.io", 3))
         self._nid = 1
 
-    def debug(self):
-        return "DEBUG"
-
     def call(self, to, method, params=None):
-        call = CallBuilder()\
-            .to(to)\
-            .method(method)\
-            .params(params)\
-            .build()
+        try:
+            call = CallBuilder()\
+                .to(to)\
+                .method(method)\
+                .params(params)\
+                .build()
+        except JSONRPCException as e:
+            raise HTTPException(status_code=500, detail=e)
         return self._icon_service.call(call)
 
     def get_icx_usd_price(self):

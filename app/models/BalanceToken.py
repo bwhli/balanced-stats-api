@@ -33,4 +33,4 @@ class BalanceToken:
     def get_baln_market_cap(self):
         baln_circulating_supply = self.get_baln_circulating_supply()
         baln_price_usd = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPriceByName", {"_name": "BALN/bnUSD"}), 18)  # noqa 503
-        return baln_circulating_supply * baln_price_usd
+        return round(baln_circulating_supply * baln_price_usd, 2)
