@@ -10,7 +10,7 @@ class BalancedDividends:
         self.balance_token = BalanceToken()
         self._icx_usd_price = self._icx.get_icx_usd_price()
         self._baln_usd_price = self.balance_token.get_baln_price()["baln_price_usd"]  # noqa 503
-        self._BALANCED_DIVIDENDS_ADDRESS = "cx13f08df7106ae462c8358066e6d47bb68d995b6d"  # noqa 503
+        self._BALANCED_DIVIDENDS_ADDRESS = "cx203d9cd2a669be67177e997b8948ce2c35caffae"  # noqa 503
 
     def get_fees(self):
         fees = self._icx.call(self._BALANCED_DIVIDENDS_ADDRESS, "getBalances", None)  # noqa 503
