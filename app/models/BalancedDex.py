@@ -32,11 +32,7 @@ class BalancedDex:
         sicx_bnusd_tvl = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolTotal", {"_id": 2, "_token": "cx88fd7df7ddff82f7cc735c871dc519838cb235bb"}), 18)  # noqa 503
         baln_bnusd_tvl = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolTotal", {"_id": 3, "_token": "cx88fd7df7ddff82f7cc735c871dc519838cb235bb"}), 18)  # noqa 503
         sicx_icx_tvl_usd = sicx_icx_tvl * self._icx_price
-<<<<<<< HEAD
         dex_total_tvl_usd = sicx_bnusd_tvl + baln_bnusd_tvl + sicx_icx_tvl_usd  # noqa 503
-=======
-        dex_total_tvl_usd = sicx_bnusd_tvl + baln_bnusd_tvl + sicx_icx_tvl_usd
->>>>>>> parent of 67198e8 (Add BALN/sICX liquidity pool.)
         return {
             "sicx_icx_tvl": round(sicx_icx_tvl, 8),
             "sicx_bnusd_tvl": round(sicx_bnusd_tvl, 2),
