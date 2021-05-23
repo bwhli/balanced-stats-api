@@ -27,7 +27,6 @@ class DexTvl(BaseModel):
     sicx_icx_tvl: str
     sicx_bnusd_tvl: str
     baln_bnusd_tvl: str
-    sicx_baln_tvl: str
     dex_total_tvl_usd: str
 
 
@@ -64,11 +63,9 @@ async def get_dex_tvl():
     dex_total_tvl_usd = dex_tvl["dex_total_tvl_usd"]
     sicx_bnusd_tvl = dex_tvl["sicx_bnusd_tvl"]
     sicx_icx_tvl = dex_tvl["sicx_icx_tvl"]
-    sicx_baln_tvl = dex_tvl["sicx_baln_tvl"]
     return {
         "baln_bnusd_tvl": baln_bnusd_tvl,
         "dex_total_tvl_usd": dex_total_tvl_usd,
         "sicx_bnusd_tvl": sicx_bnusd_tvl,
         "sicx_icx_tvl": sicx_icx_tvl,
-        "sicx_baln_tvl": sicx_baln_tvl
     }
