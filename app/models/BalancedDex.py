@@ -33,14 +33,12 @@ class BalancedDex:
         sicx_icx_tvl = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "totalSupply", {"_id": 1}), 18)  # noqa 503
         sicx_bnusd_tvl = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolTotal", {"_id": 2, "_token": "cx88fd7df7ddff82f7cc735c871dc519838cb235bb"}), 18)  # noqa 503
         baln_bnusd_tvl = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolTotal", {"_id": 3, "_token": "cx88fd7df7ddff82f7cc735c871dc519838cb235bb"}), 18)  # noqa 503
-        sicx_baln_tvl = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolTotal", {"_id": 4, "_token": "cx88fd7df7ddff82f7cc735c871dc519838cb235bb"}), 18)  # noqa 503
         sicx_icx_tvl_usd = sicx_icx_tvl * self._icx_price
-        dex_total_tvl_usd = sicx_bnusd_tvl + baln_bnusd_tvl + sicx_icx_tvl_usd + sicx_baln_tvl  # noqa 503
+        dex_total_tvl_usd = sicx_bnusd_tvl + baln_bnusd_tvl + sicx_icx_tvl_usd  # noqa 503
         return {
             "sicx_icx_tvl": round(sicx_icx_tvl, 8),
             "sicx_bnusd_tvl": round(sicx_bnusd_tvl, 2),
             "baln_bnusd_tvl": round(baln_bnusd_tvl, 2),
-            "sicx_baln_tvl": round(sicx_baln_tvl, 8),
             "dex_total_tvl_usd": round(dex_total_tvl_usd, 2)
         }
 
