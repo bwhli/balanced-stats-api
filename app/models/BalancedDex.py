@@ -45,4 +45,5 @@ class BalancedDex:
         sicx_icx_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 1}), 18)  # noqa 503
         sicx_bnusd_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 2}), 18)  # noqa 503
         baln_bnusd_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 3}), 18)  # noqa 503
+        baln_sicx_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 4}), 18)  # noqa 503
         return sicx_icx_quote, sicx_bnusd_quote, baln_bnusd_quote
