@@ -12,6 +12,7 @@ class MarketQuote(BaseModel):
     sicx_icx_quote: str
     sicx_bnusd_quote: str
     baln_bnusd_quote: str
+    baln_sicx_quote: str
 
 
 @router.get("/quote/", response_model=MarketQuote)
@@ -20,8 +21,10 @@ async def get_market_quotes():
     sicx_icx_quote = market_quotes[0]
     sicx_bnusd_quote = market_quotes[1]
     baln_bnusd_quote = market_quotes[2]
+    baln_sicx_quote = market_quotes[3]
     return {
         "sicx_icx_quote": sicx_icx_quote,
         "sicx_bnusd_quote": sicx_bnusd_quote,
-        "baln_bnusd_quote": baln_bnusd_quote
+        "baln_bnusd_quote": baln_bnusd_quote,
+        "baln_sicx_quote": baln_sicx_quote
     }

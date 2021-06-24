@@ -1,4 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from ..helpers import hex_to_int
 from ..icx import Icx
 
@@ -14,7 +13,8 @@ class BalancedDex:
         sicx_icx_stats = self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolStats", {"_id": 1})  # noqa 503
         sicx_bnusd_stats = self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolStats", {"_id": 2})  # noqa 503
         baln_bnusd_stats = self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolStats", {"_id": 3})  # noqa 503
-        for pool in [sicx_icx_stats, sicx_bnusd_stats, baln_bnusd_stats]:
+        baln_sicx_stats = self._icx.call(self._BALANCED_DEX_ADDRESS, "getPoolStats", {"_id": 4})  # noqa 503
+        for pool in [sicx_icx_stats, sicx_bnusd_stats, baln_bnusd_stats, baln_sicx_stats]:  # noqa 503
             pool["base"] = str(hex_to_int(pool["base"], 18))
             pool["quote"] = str(hex_to_int(pool["quote"], 18))
             pool["price"] = str(hex_to_int(pool["price"], 18))
@@ -25,7 +25,8 @@ class BalancedDex:
         return {
             "sicx_icx_pool": sicx_icx_stats,
             "sicx_bnusd_pool": sicx_bnusd_stats,
-            "baln_bnusd_pool": baln_bnusd_stats
+            "baln_bnusd_pool": baln_bnusd_stats,
+            "baln_sicx_pool": baln_sicx_stats
         }
 
     def get_dex_tvl(self):
@@ -45,4 +46,5 @@ class BalancedDex:
         sicx_icx_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 1}), 18)  # noqa 503
         sicx_bnusd_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 2}), 18)  # noqa 503
         baln_bnusd_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 3}), 18)  # noqa 503
-        return sicx_icx_quote, sicx_bnusd_quote, baln_bnusd_quote
+        baln_sicx_quote = hex_to_int(self._icx.call(self._BALANCED_DEX_ADDRESS, "getPrice", {"_id": 4}), 18)  # noqa 503
+        return sicx_icx_quote, sicx_bnusd_quote, baln_bnusd_quote, baln_sicx_quote
